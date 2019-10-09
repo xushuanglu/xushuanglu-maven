@@ -1,0 +1,234 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.maven</groupId>
+  <artifactId>xushuanglu-maven</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- 开发者信息 -->
+  <developers>
+    <developer>
+      <id>jdoe</id>
+      <name>John Doe</name>
+      <email>jdoe@example.com</email>
+      <url>http://www.example.com/jdoe</url>
+      <organization>ACME</organization>
+      <organizationUrl>http://www.example.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>America/New_York</timezone>
+      <properties>
+        <picUrl>http://www.example.com/jdoe/pic</picUrl>
+      </properties>
+    </developer>
+  </developers>
+  
+  <!-- 贡献者 -->
+  <contributors>
+    <contributor>
+      <name>Noelle</name>
+      <email>some.name@gmail.com</email>
+      <url>http://noellemarie.com</url>
+      <organization>Noelle Marie</organization>
+      <organizationUrl>http://noellemarie.com</organizationUrl>
+      <roles>
+        <role>tester</role>
+      </roles>
+      <timezone>America/Vancouver</timezone>
+      <properties>
+        <gtalk>some.name@gmail.com</gtalk>
+      </properties>
+    </contributor>
+  </contributors>
+  
+  <!-- 持续集成信息 -->
+  <ciManagement>
+    <system>continuum</system>
+    <url>http://127.0.0.1:8080/continuum</url>
+    <notifiers>
+      <notifier>
+        <type>mail</type>
+        <sendOnError>true</sendOnError>
+        <sendOnFailure>true</sendOnFailure>
+        <sendOnSuccess>false</sendOnSuccess>
+        <sendOnWarning>false</sendOnWarning>
+        <configuration><address>continuum@127.0.0.1</address></configuration>
+      </notifier>
+    </notifiers>
+  </ciManagement>
+  
+  <!-- 邮件列表信息 -->
+  <mailingLists>
+    <mailingList>
+      <name>User List</name>
+      <subscribe>user-subscribe@127.0.0.1</subscribe>
+      <unsubscribe>user-unsubscribe@127.0.0.1</unsubscribe>
+      <post>user@127.0.0.1</post>
+      <archive>http://127.0.0.1/user/</archive>
+      <otherArchives>
+        <otherArchive>http://base.google.com/base/1/127.0.0.1</otherArchive>
+      </otherArchives>
+    </mailingList>
+  </mailingLists>
+  
+  <!-- 版本控制信息 -->
+  <scm>
+    <connection>scm:svn:http://127.0.0.1/svn/my-project</connection>
+    <developerConnection>scm:svn:https://127.0.0.1/svn/my-project</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://127.0.0.1/websvn/my-project</url>
+  </scm>
+  
+  <!-- 仓库配置 -->
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>codehausSnapshots</id>
+      <name>Codehaus Snapshots</name>
+      <url>http://snapshots.maven.codehaus.org/maven2</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+  
+  <!-- 插件存储库 -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <!-- 描述项目中资源的位置 -->
+　　<resources>
+　　　　<!-- 自定义资源1 -->
+　　　　<resource>
+　　　　　　<!-- 资源目录 -->
+　　　　　　<directory>src/main/java</directory>
+　　　　　　<!-- 包括哪些文件参与打包 -->
+　　　　　　<includes>
+　　　　　　　　<include>**/*.xml</include>
+　　　　　　</includes>
+　　　　　　<!-- 排除哪些文件不参与打包 -->
+　　　　　　<excludes>
+　　　　　　　　<exclude>**/*.txt</exclude>
+　　　　　　　　　　<exclude>**/*.doc</exclude>
+　　　　　　</excludes>
+　　　　</resource>
+　　</resources>
+
+	<!-- 源码目录，插件管理等配置 -->
+	<build>
+	    <directory>${project.basedir}/target</directory>
+	    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+	    <finalName>${project.artifactId}-${project.version}</finalName>
+	    <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+	    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+	    <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+	    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+	    <resources>
+	      <resource>
+	        <directory>${project.basedir}/src/main/resources</directory>
+	      </resource>
+	    </resources>
+	    <testResources>
+	      <testResource>
+	        <directory>${project.basedir}/src/test/resources</directory>
+	      </testResource>
+	    </testResources>
+	    <pluginManagement>
+	      <!-- NOTE: These plugins will be removed from future versions of the super POM -->
+	      <!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
+	      <plugins>
+	        <plugin>
+	          <artifactId>maven-antrun-plugin</artifactId>
+	          <version>1.3</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-assembly-plugin</artifactId>
+	          <version>2.2-beta-5</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-dependency-plugin</artifactId>
+	          <version>2.1</version>
+	        </plugin>
+	        <plugin>
+	          <artifactId>maven-release-plugin</artifactId>
+	          <version>2.0</version>
+	        </plugin>
+	        
+	        <!-- 数据库配置 -->
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>sql-maven-plugin</artifactId>
+               <version>1.5</version>
+               <dependencies>
+                    <dependency>
+                         <groupId>mysql</groupId>
+                         <artifactId>mysql-connector-java</artifactId>
+                         <version>5.1.38</version>
+                    </dependency>
+               </dependencies>
+               <configuration><!-- 一般不建议直接配置 -->
+                    <driver>${mysql.jdbc.driver}</driver>
+                    <url>${mysql.jdbc.url}</url>
+                    <username>${mysql.jdbc.username}</username>
+                    <password>${mysql.jdbc.password}</password>
+               </configuration>
+               <executions>
+               <execution>
+                    <id>create</id>
+                    <phase>test</phase>
+                    <goals>
+                         <goal>execute</goal>
+                    </goals>
+                    <configuration>
+                         <sqlCommand>create database IF NOT EXIST xxx</sqlCommand>
+                    </configuration>
+               </execution>
+
+               <execution>
+                    <id>create-table</id>
+                    <phase>test</phase>
+                    <goals>
+                         <goal>execute</goal>
+                    </goals>
+                    <configuration>
+                         <srcFiles>
+                              <srcFile>
+                                   src/main/resources/init.sql
+                              </srcFile>
+                         </srcFiles>
+                    </configuration>
+               </execution>
+               </executions>
+          	</plugin>
+	        
+	      </plugins>
+	    </pluginManagement>
+  	</build>
+
+	<!-- 报告配置 -->
+	<reporting>
+		<outputDirectory>${project.build.directory}/site</outputDirectory>
+	</reporting>
+	
+  
+</project>
